@@ -1,0 +1,39 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0D2238"/>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <ellipse cx="1190" cy="175" rx="214" ry="108" fill="#F2D99D" fill-opacity="0.82"/>
+  <path d="M0 314C176 275 330 271 487 305C690 349 861 359 1053 315C1228 274 1394 270 1600 329V900H0V314Z" fill="url(#waterTop)"/>
+  <path d="M0 457C189 415 353 413 532 455C726 501 923 516 1114 469C1287 427 1444 422 1600 460V900H0V457Z" fill="url(#waterMid)"/>
+  <path d="M0 597C188 560 351 561 517 594C710 634 905 650 1094 612C1288 573 1453 576 1600 612V900H0V597Z" fill="url(#waterLow)"/>
+  <path d="M0 706C186 677 359 681 552 718C729 752 911 760 1096 730C1280 701 1457 703 1600 736V900H0V706Z" fill="#1F5F71"/>
+  <path d="M0 349C233 332 396 342 613 374C840 408 1017 413 1223 377C1371 351 1499 347 1600 357" stroke="#B7E4DF" stroke-opacity="0.46" stroke-width="8" stroke-linecap="round"/>
+  <path d="M74 482C260 462 421 469 621 504C784 533 970 539 1155 510C1310 486 1443 483 1538 493" stroke="#D7F0EC" stroke-opacity="0.38" stroke-width="7" stroke-linecap="round"/>
+  <path d="M39 626C235 605 406 613 604 645C762 671 952 677 1148 650C1312 627 1450 625 1569 635" stroke="#D7F0EC" stroke-opacity="0.3" stroke-width="6" stroke-linecap="round"/>
+  <g opacity="0.35">
+    <circle cx="284" cy="170" r="2.2" fill="white"/>
+    <circle cx="346" cy="136" r="1.6" fill="white"/>
+    <circle cx="521" cy="110" r="2.4" fill="white"/>
+    <circle cx="742" cy="86" r="1.8" fill="white"/>
+    <circle cx="1380" cy="122" r="2.2" fill="white"/>
+    <circle cx="1297" cy="90" r="1.5" fill="white"/>
+  </g>
+  <defs>
+    <linearGradient id="sky" x1="800" y1="0" x2="800" y2="382" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18395A"/>
+      <stop offset="0.58" stop-color="#325F7C"/>
+      <stop offset="1" stop-color="#6B8A97"/>
+    </linearGradient>
+    <linearGradient id="waterTop" x1="800" y1="314" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F6E84"/>
+      <stop offset="1" stop-color="#153D53"/>
+    </linearGradient>
+    <linearGradient id="waterMid" x1="800" y1="457" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A657B"/>
+      <stop offset="1" stop-color="#143347"/>
+    </linearGradient>
+    <linearGradient id="waterLow" x1="800" y1="597" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#245B70"/>
+      <stop offset="1" stop-color="#10273A"/>
+    </linearGradient>
+  </defs>
+</svg>

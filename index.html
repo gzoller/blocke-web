@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blocke, LLC</title>
+  <meta name="description" content="Blocke designs, modernizes, and delivers software for organizations aiming beyond incremental change.">
+  <style>
+    :root {
+      --hero-ink: #eef1f5;
+      --hero-soft: rgba(238, 241, 245, 0.82);
+      --line: rgba(255, 255, 255, 0.22);
+      --glass: rgba(10, 10, 12, 0.26);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
+      --section-1: #171513;
+      --section-2: #2b2825;
+      --section-3: #433f3a;
+      --section-4: #676058;
+      --ink-dark: #171513;
+      --ink-mid: rgba(23, 21, 19, 0.78);
+      --content-max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #020202;
+      color: var(--hero-ink);
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.14) 54%, rgba(0, 0, 0, 0.5) 100%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0.16) 32%, rgba(0, 0, 0, 0.02) 58%, rgba(0, 0, 0, 0.08) 100%),
+        url("assets/mars3.png") center center / cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 16% 28%, rgba(255, 255, 255, 0.08), transparent 24%),
+        radial-gradient(circle at 80% 80%, rgba(229, 99, 38, 0.12), transparent 28%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, 0.48) 100%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px clamp(22px, 4vw, 52px) 34px;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      width: min(24vw, 280px);
+      min-width: 170px;
+      opacity: 0.9;
+      filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.3));
+    }
+
+    .menu-button {
+      position: relative;
+      z-index: 3;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      width: 52px;
+      height: 52px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      display: block;
+      height: 1.5px;
+      background: var(--hero-ink);
+      border-radius: 999px;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .menu-button[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .menu-button[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+
+    .menu-panel {
+      position: absolute;
+      top: 92px;
+      right: clamp(22px, 4vw, 52px);
+      z-index: 2;
+      width: min(320px, calc(100vw - 44px));
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 24px;
+      background: rgba(6, 6, 7, 0.72);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .menu-panel.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .menu-panel a {
+      display: block;
+      padding: 13px 14px;
+      border-radius: 16px;
+      color: rgba(238, 241, 245, 0.92);
+      letter-spacing: 0.04em;
+      transition: background 160ms ease;
+    }
+
+    .menu-panel a:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-copy {
+      max-width: min(980px, 86vw);
+      margin-bottom: clamp(100px, 16vh, 180px);
+      transform: translateY(-96px);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: none;
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      font-size: clamp(2.2rem, 6vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+      white-space: nowrap;
+    }
+
+    .support {
+      max-width: 36rem;
+      margin: 22px 0 0;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      line-height: 1.75;
+      color: var(--hero-soft);
+    }
+
+    .hero-foot {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(238, 241, 245, 0.66);
+    }
+
+    .hero-foot::before {
+      content: "";
+      width: 52px;
+      height: 1px;
+      background: rgba(238, 241, 245, 0.34);
+    }
+
+    .chapter {
+      padding: 96px 24px;
+    }
+
+    .chapter-inner {
+      width: min(100%, var(--content-max));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.75fr);
+      gap: 42px;
+      align-items: start;
+    }
+
+    .chapter-copy h2,
+    .chapter-quote,
+    .teaser-card h3 {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+      letter-spacing: -0.04em;
+    }
+
+    .chapter-label {
+      margin: 0 0 18px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.68;
+    }
+
+    .chapter-copy h2 {
+      max-width: 13ch;
+      font-size: clamp(2.4rem, 5vw, 4.3rem);
+      line-height: 0.98;
+    }
+
+    .chapter-copy p,
+    .teaser-card p,
+    .chapter-list li {
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .chapter-copy p {
+      max-width: 36rem;
+      margin: 22px 0 0;
+      opacity: 0.86;
+    }
+
+    .chapter-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .chapter-list,
+    .teaser-card {
+      margin: 0;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .chapter-list {
+      list-style: none;
+    }
+
+    .chapter-list li + li {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .chapter-quote {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.18;
+    }
+
+    .chapter-1 {
+      background: var(--section-1);
+      color: #f0ebe3;
+    }
+
+    .chapter-2 {
+      background: var(--section-2);
+      color: #f2ede5;
+    }
+
+    .chapter-3 {
+      background: var(--section-3);
+      color: #f4f0e9;
+    }
+
+    .chapter-4 {
+      background: var(--section-4);
+      color: var(--ink-dark);
+    }
+
+    .chapter-4 .chapter-copy p,
+    .chapter-4 .chapter-label,
+    .chapter-4 .teaser-card p {
+      color: var(--ink-mid);
+      opacity: 1;
+    }
+
+    .chapter-4 .chapter-list,
+    .chapter-4 .teaser-card {
+      border-color: rgba(23, 21, 19, 0.14);
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .chapter-4 .chapter-list li + li {
+      border-top-color: rgba(23, 21, 19, 0.12);
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        background-position: 58% center;
+      }
+
+      .hero-inner {
+        padding-top: 22px;
+      }
+
+      .brand {
+        width: min(48vw, 220px);
+        min-width: 140px;
+      }
+
+      .menu-panel {
+        top: 84px;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      h1 {
+        white-space: normal;
+      }
+
+      .chapter {
+        padding: 72px 22px;
+      }
+
+      .chapter-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-top">
+        <img class="brand" src="assets/logo-overlay-light.png" alt="Blocke, LLC">
+        <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-panel">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="menu-panel" id="menu-panel" aria-label="Section navigation">
+        <a href="#modernization">Modernize what matters</a>
+        <a href="#ai">Use AI with judgment</a>
+        <a href="#about">Craftsmanship still counts</a>
+      </nav>
+
+      <section class="hero-copy" aria-label="Introduction">
+        <h1>Big goals need better systems.</h1>
+        <p class="support">
+          Blocke designs, modernizes, and delivers software for organizations aiming
+          beyond incremental change.
+        </p>
+      </section>
+
+      <a class="hero-foot" href="#modernization">Scroll to continue</a>
+    </div>
+  </main>
+
+  <section class="chapter chapter-1" id="modernization">
+    <div class="chapter-inner">
+      <div class="chapter-copy">
+        <p class="chapter-label">Modernization</p>
+        <h2>Modernize what matters.</h2>
+        <p>
+          Not every legacy system should be replaced. We identify what to preserve, what to refactor,
+          and what to retire so momentum stays real.
+        </p>
+        <p>
+          Blocke helps teams rethink system boundaries, platform capabilities, and integration patterns
+          before complexity hardens into policy, then carries that work into practical delivery.
+        </p>
+      </div>
+      <div class="chapter-side">
+        <ul class="chapter-list">
+          <li>System design and re-imagination for platforms that have outgrown their assumptions.</li>
+          <li>Incremental modernization roadmaps with measured sequencing and less operational drag.</li>
+          <li>Build and delivery guidance that turns architectural intent into working software.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter chapter-2" id="ai">
+    <div class="chapter-inner">
+      <div class="chapter-copy">
+        <p class="chapter-label">AI Right-Sizing</p>
+        <h2>Use AI with judgment.</h2>
+        <p>
+          AI can accelerate work, but only when it fits the team and the problem. We help organizations
+          adopt it with boundaries, review discipline, and measurable value.
+        </p>
+        <p>
+          Better tools raise the premium on code quality, maintainability, and human judgment. The goal
+          is not maximal automation. The goal is better software.
+        </p>
+      </div>
+      <div class="chapter-side">
+        <div class="teaser-card">
+          <h3 class="chapter-quote">Craftsmanship matters more now, not less.</h3>
+          <p>
+            Review patterns, operating guidance, and development workflows should keep standards intact
+            while taking advantage of real gains.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter chapter-3" id="about">
+    <div class="chapter-inner">
+      <div class="chapter-copy">
+        <p class="chapter-label">About Blocke</p>
+        <h2>Craftsmanship still counts.</h2>
+        <p>
+          We believe software is about craftsmanship, which is even more important today in the age of AI.
+          Good software work comes from judgment, experience, sequencing, and steady execution.
+        </p>
+        <p>
+          Proudly a remote-first company, headquartered in the Dallas metroplex, Blocke brings flexible
+          collaboration without sacrificing accountability, responsiveness, or rigor.
+        </p>
+      </div>
+      <div class="chapter-side">
+        <ul class="chapter-list">
+          <li>Senior-level judgment, practical collaboration, and less theater.</li>
+          <li>Vision that can survive implementation, not aspirational diagrams that expire on contact.</li>
+          <li>Useful change, measured risk, and structural improvements that earn their keep.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const button = document.querySelector(".menu-button");
+    const panel = document.querySelector(".menu-panel");
+    const links = document.querySelectorAll(".menu-panel a");
+
+    if (button && panel) {
+      button.addEventListener("click", () => {
+        const next = button.getAttribute("aria-expanded") !== "true";
+        button.setAttribute("aria-expanded", String(next));
+        panel.classList.toggle("is-open", next);
+      });
+
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          button.setAttribute("aria-expanded", "false");
+          panel.classList.remove("is-open");
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!panel.contains(event.target) && !button.contains(event.target)) {
+          button.setAttribute("aria-expanded", "false");
+          panel.classList.remove("is-open");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
