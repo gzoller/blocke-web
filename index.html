@@ -266,6 +266,26 @@
       opacity: 0.86;
     }
 
+    .chapter-action {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 28px;
+      padding: 12px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 160ms ease, border-color 160ms ease;
+    }
+
+    .chapter-action:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
     .chapter-side {
       display: grid;
       gap: 18px;
@@ -332,6 +352,16 @@
 
     .chapter-4 .chapter-list li + li {
       border-top-color: rgba(23, 21, 19, 0.12);
+    }
+
+    .chapter-4 .chapter-action {
+      border-color: rgba(23, 21, 19, 0.16);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .chapter-4 .chapter-action:hover {
+      background: rgba(255, 255, 255, 0.42);
+      border-color: rgba(23, 21, 19, 0.24);
     }
 
     @media (max-width: 860px) {
@@ -463,6 +493,7 @@
           Proudly a remote-first company, headquartered in the Dallas metroplex, Blocke brings flexible
           collaboration without sacrificing accountability, responsiveness, or rigor.
         </p>
+        <a class="chapter-action" href="mailto:gzoller@blocke.co">Contact us</a>
       </div>
       <div class="chapter-side">
         <ul class="chapter-list">
